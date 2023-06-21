@@ -55,7 +55,30 @@ const main = useMainStore();
           </template>
         </v-btn>
       </template>
-      <v-list></v-list>
+      <v-list :lines="false">
+        <v-list-item
+          density="compact"
+          @click="$router.push({ name: 'account' })"
+        >
+          <template v-slot:prepend>
+            <v-icon size="14" class="mr-4" icon="far fa-circle-user"></v-icon>
+          </template>
+          <v-list-item-title>Meu perfil</v-list-item-title>
+        </v-list-item>
+        <v-list-item
+          density="compact"
+          @click="$router.push({ name: 'account' })"
+        >
+          <template v-slot:prepend>
+            <v-icon
+              size="14"
+              class="mr-4"
+              icon="fas fa-arrow-right-from-bracket"
+            ></v-icon>
+          </template>
+          <v-list-item-title>Logout</v-list-item-title>
+        </v-list-item>
+      </v-list>
     </v-menu>
   </v-app-bar>
 </template>
