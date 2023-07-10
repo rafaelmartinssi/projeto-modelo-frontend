@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref, onMounted } from "vue";
-import AppTabs, { type Tab } from "@/components/AppTabs.vue";
+import AppTabsButton, { type Tab } from "@/components/AppTabsButton.vue";
 import { useMainStore } from "@/store";
 import { Password } from "@/store/types";
 import services from "@/services";
@@ -52,12 +52,10 @@ const tabs: Tab[] = [
   {
     id: "account",
     title: "Dados pessoais",
-    icon: "fas fa-circle-user",
   },
   {
     id: "password",
     title: "Senhas",
-    icon: "fas fa-key",
   },
 ];
 </script>
@@ -86,130 +84,101 @@ const tabs: Tab[] = [
     >
       Meu Perfil
     </v-sheet>
-    <v-sheet class="mt-4 rounded-lg mx-5 pa-5">
-      <AppTabs :tabs="tabs">
+    <v-sheet color="base" class="mt-4 rounded-lg mx-5 pa-1">
+      <AppTabsButton :tabs="tabs">
         <template #tab:account>
-          <v-row class="text-subtitle-1 font-weight-bold text-medium-emphasis">
-            <v-col class="pb-0" cols="12">
-              Mantenha seu cadastro sempre atualizado.
-            </v-col>
-          </v-row>
           <v-row class="text-subtitle-2">
-            <v-col class="pt-0" cols="12">
-              Se qualquer informação estiver incorreta entre em contato com o
-              administrador do sistema.
+            <v-col cols="12">
+              ATENÇÃO: Mantenha seus dados sempre atualizados
             </v-col>
           </v-row>
           <v-row class="mt-3">
             <v-col cols="12" sm="5">
-              <div class="text-subtitle-2 font-weight-bold text-primary">
-                Nome
-              </div>
+              <div class="text-subtitle-2 font-weight-bold">Nome</div>
               <v-text-field
                 v-model="main.user.nome"
                 hide-details
                 readonly
                 class="rounded-lg bg-base pl-2 font-weight-medium"
-                density="compact"
+                d-flex
+                al
                 variant="plain"
               ></v-text-field>
             </v-col>
-          </v-row>
-          <v-row class="mt-3">
             <v-col cols="12" sm="5">
-              <div class="text-subtitle-2 font-weight-bold text-primary">
-                Email
-              </div>
+              <div class="text-subtitle-2 font-weight-bold">Email</div>
               <v-text-field
                 v-model="main.user.email"
                 hide-details
                 readonly
                 class="rounded-lg bg-base pl-2 font-weight-medium"
-                density="compact"
                 variant="plain"
               ></v-text-field>
             </v-col>
           </v-row>
           <v-row class="mt-3">
             <v-col cols="12" sm="5">
-              <div class="text-subtitle-2 font-weight-bold text-primary">
-                CPF
-              </div>
+              <div class="text-subtitle-2 font-weight-bold">CPF</div>
               <v-text-field
                 v-model="main.user.cpf"
                 hide-details
                 readonly
                 class="rounded-lg bg-base pl-2 font-weight-medium"
-                density="compact"
+                d-flex
+                align-center
                 variant="plain"
               ></v-text-field>
             </v-col>
-          </v-row>
-          <v-row class="mt-3">
             <v-col cols="12" sm="5">
-              <div class="text-subtitle-2 font-weight-bold text-primary">
-                Celular
-              </div>
+              <div class="text-subtitle-2 font-weight-bold">Celular</div>
               <v-text-field
                 v-model="main.user.telefone"
                 hide-details
                 readonly
                 class="rounded-lg bg-base pl-2 font-weight-medium"
-                density="compact"
                 variant="plain"
               ></v-text-field>
             </v-col>
-            <v-col cols="12" sm="4"> </v-col>
           </v-row>
         </template>
         <template #tab:password>
           <v-row class="text-subtitle-2">
             <v-col cols="12">
-              * Todos os campos são de preenchimento obrigatório
+              ATENÇÃO: Todos os campos são de preenchimento obrigatório
             </v-col>
           </v-row>
           <v-form ref="form">
             <v-row class="mt-3">
               <v-col cols="12" sm="5">
-                <div class="text-subtitle-2 font-weight-bold text-primary">
-                  Senha atual
-                </div>
+                <div class="text-subtitle-2 font-weight-bold">Senha atual</div>
                 <v-text-field
                   v-model="state.password.senhaAtual"
                   type="password"
                   hide-details="auto"
                   placeholder="********"
                   hint="Digite a senha atual"
-                  density="compact"
                   color="primary"
                   variant="outlined"
                   :rules="[(v: number) => !!v || 'Campo obrigatório']"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="4"> </v-col>
             </v-row>
             <v-row class="mt-3">
               <v-col cols="12" sm="5">
-                <div class="text-subtitle-2 font-weight-bold text-primary">
-                  Nova senha
-                </div>
+                <div class="text-subtitle-2 font-weight-bold">Nova senha</div>
                 <v-text-field
                   v-model="state.password.novaSenha"
                   color="primary"
                   type="password"
                   placeholder="********"
                   hint="A senha deve conter mínimo de 8 caracteres"
-                  density="compact"
                   hide-details="auto"
                   variant="outlined"
                   :rules="[(v: number) => !!v || 'Campo obrigatório']"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="4"> </v-col>
-            </v-row>
-            <v-row class="mt-3">
               <v-col cols="12" sm="5">
-                <div class="text-subtitle-2 font-weight-bold text-primary">
+                <div class="text-subtitle-2 font-weight-bold">
                   Confirme a nova senha
                 </div>
                 <v-text-field
@@ -219,7 +188,6 @@ const tabs: Tab[] = [
                   variant="outlined"
                   placeholder="********"
                   hint="Confirme a senha digitada anteriormente"
-                  density="compact"
                   color="primary"
                   :rules="[
                 (v: number) => !!v || 'Campo obrigatório', 
@@ -227,7 +195,6 @@ const tabs: Tab[] = [
               ]"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="4"> </v-col>
             </v-row>
           </v-form>
           <v-row class="mr-5 mt-4">
@@ -244,7 +211,7 @@ const tabs: Tab[] = [
             </v-col>
           </v-row>
         </template>
-      </AppTabs>
+      </AppTabsButton>
     </v-sheet>
   </v-sheet>
 </template>

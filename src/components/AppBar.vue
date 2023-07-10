@@ -1,12 +1,19 @@
-<script setup lang="ts">
-import { useMainStore } from "@/store";
-const main = useMainStore();
-</script>
+<script setup lang="ts"></script>
 <template>
   <v-app-bar app fixed elevation="0" color="base">
-    <div class="ml-6 text-primary font-weight-bold text-subtitle-1">
-      Olá, {{ main.user.nome.split(" ")[0].toUpperCase() }}
-    </div>
+    <v-btn
+      color="primary"
+      variant="plain"
+      class="text-body-2 mr-2 font-weight-bold"
+      >Pesquisar
+      <template #prepend>
+        <v-icon
+          color="primary"
+          size="15"
+          icon="fas fa-magnifying-glass"
+        ></v-icon>
+      </template>
+    </v-btn>
     <v-spacer></v-spacer>
     <v-menu location="bottom">
       <template #activator="{ props }">

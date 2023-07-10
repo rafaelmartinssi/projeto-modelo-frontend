@@ -15,7 +15,7 @@ const items: Item[] = [
   {
     title: "Dashbord",
     icon: "fas fa-chart-pie",
-    path: "",
+    path: "home",
   },
   {
     title: "Usuários",
@@ -43,20 +43,20 @@ const redirect = (path: string) => {
     fixed
     permanent
   >
-    <v-list class="mt-2" nav>
+    <v-list :lines="rail ? false : 'one'" class="mt-2" nav>
       <v-list-item
         :density="rail ? 'compact' : 'default'"
         class="py-0 my-0"
         @click="rail = !rail"
       >
         <template v-slot:prepend>
-          <v-icon size="17" class="ml-3 py-0 my-0" icon="fas fa-bars"></v-icon>
+          <v-icon class="ml-3 py-0 my-0" icon="fas fa-bars"></v-icon>
         </template>
         <v-list-item-title class="text-subtitle-1 py-0 my-0"
           >Menu</v-list-item-title
         >
       </v-list-item>
-      <div class="text-caption text-center" v-if="rail">Menu</div>
+      <div class="text-caption text-center mb-3" v-if="rail">Menu</div>
       <div v-for="(item, index) in items" :key="index">
         <v-list-item
           @click="redirect(item.path)"
@@ -66,7 +66,6 @@ const redirect = (path: string) => {
         >
           <template v-slot:prepend>
             <v-icon
-              size="17"
               :class="$route.name === `${item.path}` ? 'active' : ''"
               class="ml-3 py-0 my-0"
               :icon="item.icon"
@@ -79,12 +78,12 @@ const redirect = (path: string) => {
           >
         </v-list-item>
         <div
-          class="text-caption text-center"
-          v-if="rail && $route.name !== `${item.path}`"
+          class="text-caption text-center mb-3"
+          :class="$route.name === `${item.path}` ? 'bold' : ''"
+          v-if="rail"
         >
           {{ item.title }}
         </div>
-        <div class="border" v-if="rail && $route.name === `${item.path}`"></div>
       </div>
     </v-list>
   </v-navigation-drawer>
@@ -93,14 +92,8 @@ const redirect = (path: string) => {
 .active {
   opacity: 1 !important;
 }
-.bold {
-  font-weight: 900;
-}
-.border {
-  height: 5px;
-  width: 40px;
-  margin-left: 6px;
-  border-radius: 5px;
-  background-color: #ffffff;
+
+.v-icon {
+  opacity: 1;
 }
 </style>

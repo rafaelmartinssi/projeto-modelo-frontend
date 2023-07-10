@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import AppCardDefault from "@/components/AppCardDefault.vue";
 import services from "@/services";
 import { User } from "@/store/types";
 import { reactive } from "vue";
@@ -63,82 +62,63 @@ const onSubmit = async () => {
     >
       Cadastro de usuário
     </v-sheet>
-    <v-sheet class="mt-4 rounded-lg mx-5 pa-5">
+    <v-sheet class="mt-4 rounded-lg mx-5 py-5 px-15" elevation="1">
       <v-row class="text-subtitle-2">
         <v-col cols="12">
-          * Todos os campos são de preenchimento obrigatório
+          ATENÇÃO: Todos os campos são de preenchimento obrigatório
         </v-col>
       </v-row>
       <v-form ref="form">
         <v-row class="mt-3">
           <v-col cols="12" sm="5">
-            <div class="text-subtitle-2 font-weight-bold text-primary">
-              Nome
-            </div>
+            <div class="text-subtitle-2 font-weight-bold">Nome</div>
             <v-text-field
               v-model="state.user.nome"
               hide-details="auto"
               placeholder="Ex: João Siva"
-              density="compact"
               color="primary"
               variant="outlined"
               :rules="[(v: number) => !!v || 'Campo obrigatório']"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" sm="4"> </v-col>
-        </v-row>
-        <v-row class="mt-3">
           <v-col cols="12" sm="5">
-            <div class="text-subtitle-2 font-weight-bold text-primary">
-              Email
-            </div>
+            <div class="text-subtitle-2 font-weight-bold">Email</div>
             <v-text-field
               v-model="state.user.email"
               hide-details="auto"
               placeholder="Ex: joao@gmail.com"
-              density="compact"
               color="primary"
               variant="outlined"
               :rules="[(v: number) => !!v || 'Campo obrigatório']"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" sm="4"> </v-col>
         </v-row>
 
-        <v-row class="mt-3">
+        <v-row class="">
           <v-col cols="12" sm="5">
-            <div class="text-subtitle-2 font-weight-bold text-primary">CPF</div>
+            <div class="text-subtitle-2 font-weight-bold">CPF</div>
             <v-text-field
               v-model="state.user.cpf"
               hide-details="auto"
               placeholder="Ex: 111.111.111-11"
               v-mask="'###.###.###-##'"
-              density="compact"
               color="primary"
               variant="outlined"
               :rules="[(v: number) => !!v || 'Campo obrigatório']"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" sm="4"> </v-col>
-        </v-row>
-
-        <v-row class="mt-3">
           <v-col cols="12" sm="5">
-            <div class="text-subtitle-2 font-weight-bold text-primary">
-              Celular
-            </div>
+            <div class="text-subtitle-2 font-weight-bold">Celular</div>
             <v-text-field
               v-model="state.user.telefone"
               hide-details="auto"
               placeholder="Ex: (31)90000-0000"
               v-mask="'(##)#####-####'"
-              density="compact"
               color="primary"
               variant="outlined"
               :rules="[(v: number) => !!v || 'Campo obrigatório']"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" sm="4"> </v-col>
         </v-row>
       </v-form>
       <v-row class="mr-5 mt-4">
